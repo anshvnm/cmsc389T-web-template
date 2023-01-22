@@ -1,0 +1,20 @@
+name: Clone Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clone:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: TerpConnecter
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /pub/${{ secrets.USERNAME }}
+            git clone git@github.com:anshvnm/cmsc389T-web-template.git
